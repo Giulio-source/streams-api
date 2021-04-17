@@ -18,6 +18,23 @@ app.post("/", (req, res) => {
   console.log("POST", streams);
 });
 
+app.get("/edit/:id", (req, res) => {
+  const getStream = streams.find((stream) => stream.id === req.params.id);
+  res.json(getStream);
+  console.log("GET ONE", getStream);
+});
+
+app.patch("/edit/:id", (req, res) => {
+  streams = streams.map((stream) => {
+    if (stream.id === req.params.id) {
+      stream.title = req.body.title;
+      stream.description = req.body.description;
+    }
+    return stream;
+  });
+  console.log("I WANNA EDIT SOMTHING", streams);
+});
+
 app.listen(3001, () => {
   console.log("Listening on port 3001");
 });
