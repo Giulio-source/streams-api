@@ -32,7 +32,12 @@ app.patch("/edit/:id", (req, res) => {
     }
     return stream;
   });
-  console.log("I WANNA EDIT SOMTHING", streams);
+  console.log("EDIT ONE", streams);
+});
+
+app.delete("/delete/:id", (req, res) => {
+  streams = streams.filter((stream) => stream.id !== req.params.id);
+  res.json("DELETED ONE", streams);
 });
 
 app.listen(3001, () => {
